@@ -1,4 +1,4 @@
-package com.cloud.psynea.Filter;
+package com.cloud.psynea.filter;
 
 import com.cloud.psynea.dto.ResponseDto;
 import com.cloud.psynea.entity.User;
