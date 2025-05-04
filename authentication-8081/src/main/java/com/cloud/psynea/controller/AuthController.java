@@ -2,7 +2,6 @@ package com.cloud.psynea.controller;
 
 import com.cloud.psynea.dto.ResponseDto;
 import com.cloud.psynea.dto.UserDto;
-import com.cloud.psynea.entity.User;
 import com.cloud.psynea.mapper.UserMapper;
 import com.cloud.psynea.service.UserService;
 import jakarta.annotation.Resource;
