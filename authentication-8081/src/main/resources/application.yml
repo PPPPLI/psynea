@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: authentication-8081
+
+  cloud:
+    consul:
+      port: 8500
+      host: localhost
+      discovery:
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/psynea
+
