@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.io.IOException;
 
 @RestControllerAdvice
+@SuppressWarnings("unused")
 public class ExceptionHandler {
 
 
