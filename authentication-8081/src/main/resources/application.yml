@@ -10,7 +10,10 @@ spring:
         service-name: ${spring.application.name}
         prefer-ip-address: true
 
+
   data:
     mongodb:
       uri: mongodb://localhost:27017/psynea
 
+server:
+  port: 8082

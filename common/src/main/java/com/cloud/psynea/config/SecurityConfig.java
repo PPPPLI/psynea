@@ -1,6 +1,6 @@
 package com.cloud.psynea.config;
 
-import com.cloud.psynea.security.LoginSuccessHandler;
+import com.cloud.psynea.filter.WebSecurityFilter;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,13 +10,15 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class SecurityConfig {
 
+
     @Resource
-    LoginSuccessHandler loginSuccessHandler;
+    WebSecurityFilter webSecurityFilter;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -26,20 +28,17 @@ public class SecurityConfig {
         http.authorizeHttpRequests(req -> {
 
             req.requestMatchers("/auth/login").permitAll();
-            req.requestMatchers("auth/register").permitAll();
+            req.requestMatchers("/auth/register").permitAll();
+            req.requestMatchers("/actuator/**").permitAll();
             req.anyRequest().authenticated();
-        });
-
-        http.formLogin(form -> {
-
-            form.loginPage("/auth/login");
-            form.successHandler(loginSuccessHandler);
         });
 
         http.sessionManagement(session -> {
 
             session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         });
+
+        http.addFilterBefore(webSecurityFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -49,4 +48,5 @@ public class SecurityConfig {
 
         return new BCryptPasswordEncoder();
     }
+
 }

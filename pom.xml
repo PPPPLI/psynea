@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mongodb.version>3.3.1</mongodb.version>
         <spring.version>3.2.0</spring.version>
-        <spring.cloud.version>2024.0.0</spring.cloud.version>
+        <spring.cloud.version>2023.0.0</spring.cloud.version>
         <spring.kafka>3.2.4</spring.kafka>
         <lombok.version>1.18.34</lombok.version>
     </properties>

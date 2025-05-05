@@ -35,9 +35,11 @@ public class WebSecurityFilter extends OncePerRequestFilter {
 
         String url = request.getRequestURI();
 
-        if(url.equals("/auth/login") || url.equals("/auth/register")){
+
+        if(url.equals("/auth/login") || url.equals("/auth/register") || url.startsWith("/actuator")){
 
             filterChain.doFilter(request, response);
+            return;
         }
 
         String token = request.getHeader("Authorization");

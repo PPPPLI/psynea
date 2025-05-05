@@ -5,10 +5,12 @@ import com.cloud.psynea.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", imports = {java.util.List.class})
 @SuppressWarnings("unused")
 public interface UserMapper {
 
+    @Mapping(target = "username", source = "username")
+    @Mapping(target = "passwd", source = "passwd")
     @Mapping(target = "authorities", expression = "java(List.of(\"user\"))")
     @Mapping(target = "isAccountNonExpired",expression = "java(true)")
     @Mapping(target = "isAccountNonLocked",expression = "java(true)")
