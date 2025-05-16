@@ -1,0 +1,16 @@
+spring:
+
+  data:
+    mongodb:
+      uri: mongodb://database:27017/psynea
+
+  cloud:
+    consul:
+      port: 8500
+      host: consul
+      discovery:
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+  config:
+    activate:
+      on-profile: prod

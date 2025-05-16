@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
             throw new UserExistException(ExceptionMessage.USER_EXIST_EXCEPTION);
         }
 
-        user.setPasswd(passwordEncoder.encode(user.getPasswd()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepository.save(user);
     }

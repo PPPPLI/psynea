@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 public interface UserMapper {
 
     @Mapping(target = "username", source = "username")
-    @Mapping(target = "passwd", source = "passwd")
+    @Mapping(target = "password", source = "password")
     @Mapping(target = "authorities", expression = "java(List.of(\"user\"))")
     @Mapping(target = "isAccountNonExpired",expression = "java(true)")
     @Mapping(target = "isAccountNonLocked",expression = "java(true)")

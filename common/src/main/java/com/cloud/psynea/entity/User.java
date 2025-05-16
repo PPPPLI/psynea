@@ -21,7 +21,7 @@ public class User{
     @Id
     private ObjectId id;
     private String username;
-    private String passwd;
+    private String password;
     private List<String> authorities;
     private Boolean isAccountNonExpired;
     private Boolean isAccountNonLocked;
@@ -31,6 +31,6 @@ public class User{
     public User(String username, String passwd) {
 
         this.username = username;
-        this.passwd = passwd;
+        this.password = passwd;
     }
 }

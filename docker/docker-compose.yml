@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+
+  psynea:
+    build:
+      context: ./authentication
+      dockerfile: Dockerfile
+    container_name: psynea-auth
+    restart: always
+    ports:
+      - "8082:8082"
+    networks:
+      - psynea-network
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - psynea-network
+
+  consul:
+    image: hashicorp/consul:1.16
+    container_name: consul
+    restart: always
+    ports:
+      - "8500:8500"     # Consul UI 和 HTTP API
+      - "8600:8600/udp" # DNS 解析（可选）
+    command: agent -dev -client=0.0.0.0
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0  # 避免绑定到 localhost
+    networks:
+      - psynea-network
+
+volumes:
+  mongo-data:
+    name: mongo-data
+    driver: local
+
+networks:
+  psynea-network:
+    driver: bridge
+    name: psynea-net
