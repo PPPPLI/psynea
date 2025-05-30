@@ -19,7 +19,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/auth")
 @Slf4j
-@CrossOrigin
 public class AuthController {
 
     @Resource
@@ -43,11 +42,11 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseDto<List<String>> login(@RequestBody UserDto userDto) throws IOException {
+    public ResponseDto<List<Object>> login(@RequestBody UserDto userDto) throws IOException {
 
         Authentication authentication = loginService.login(userMapper.userDtotoUser(userDto));
 
-        ResponseDto<List<String>> res = loginSuccessHandler.onAuthenticationSuccess(authentication);
+        ResponseDto<List<Object>> res = loginSuccessHandler.onAuthenticationSuccess(authentication);
 
         log.info("{}- Long term token: {}", LocalDateTime.now(),res.getData());
 

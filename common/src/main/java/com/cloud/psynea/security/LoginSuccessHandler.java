@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -19,14 +21,14 @@ public class LoginSuccessHandler{
     @Resource
     ObjectMapper objectMapper;
 
-    public ResponseDto<List<String>> onAuthenticationSuccess(Authentication authentication) throws IOException{
+    public ResponseDto<List<Object>> onAuthenticationSuccess(Authentication authentication) throws IOException{
 
         UserSecurity security = (UserSecurity) authentication.getPrincipal();
         String user = objectMapper.writeValueAsString(security.getUser());
         String longTermToken = JwtUtil.createToken(user, Instant.now().plus(1, ChronoUnit.DAYS));
         String shortTermToken = JwtUtil.createToken(user, Instant.now().plus(30, ChronoUnit.MINUTES));
 
-        return new ResponseDto<>(HttpStatus.ACCEPTED,List.of(longTermToken,shortTermToken));
+        return new ResponseDto<>(HttpStatus.ACCEPTED,List.of(longTermToken,shortTermToken,security.getUser().getNewUser()));
 
     }
 }

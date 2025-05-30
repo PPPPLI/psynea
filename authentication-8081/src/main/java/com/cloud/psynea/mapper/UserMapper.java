@@ -11,6 +11,9 @@ public interface UserMapper {
 
     @Mapping(target = "username", source = "username")
     @Mapping(target = "password", source = "password")
+    @Mapping(target = "email", source = "email")
+    @Mapping(target = "tel", source = "tel")
+    @Mapping(target = "newUser", expression = "java(true)")
     @Mapping(target = "authorities", expression = "java(List.of(\"user\"))")
     @Mapping(target = "isAccountNonExpired",expression = "java(true)")
     @Mapping(target = "isAccountNonLocked",expression = "java(true)")

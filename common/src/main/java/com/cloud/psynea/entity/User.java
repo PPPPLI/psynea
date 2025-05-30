@@ -22,6 +22,9 @@ public class User{
     private ObjectId id;
     private String username;
     private String password;
+    private String email;
+    private String tel;
+    private Boolean newUser;
     private List<String> authorities;
     private Boolean isAccountNonExpired;
     private Boolean isAccountNonLocked;

@@ -1,0 +1,9 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: gateway-9090
+
+  profiles:
+    active: @spring.profil.active@

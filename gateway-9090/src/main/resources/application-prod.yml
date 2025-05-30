@@ -1,0 +1,39 @@
+spring:
+  cloud:
+    consul:
+      host: consul
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+  config:
+    activate:
+      on-profile: prod
+
+
+    gateway:
+
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedHeaders: "*"
+            allowCredentials: true
+
+      routes:
+        - id: auth8081
+          uri: lb://authentication-8081
+          predicates:
+            - Path=/auth/**
+
+        - id: test8082
+          uri: lb://program-8082
+          predicates:
+            - Path=/test/**
+

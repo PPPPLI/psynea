@@ -11,6 +11,8 @@
     <modules>
         <module>authentication-8081</module>
         <module>common</module>
+        <module>program-8082</module>
+        <module>gateway-9090</module>
     </modules>
 
     <properties>
