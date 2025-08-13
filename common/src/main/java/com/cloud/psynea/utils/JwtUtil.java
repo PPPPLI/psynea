@@ -38,6 +38,16 @@ public class JwtUtil {
                 .sign(Algorithm.HMAC256(SIGNATURE));
     }
 
+    public static String createInternalTokenForServer(){
+
+        Map<String, Object> header = Map.of("alg","HMAC256","typ","JWT");
+
+        return JWT.create()
+                .withHeader(header)
+                .withIssuer("psynea")
+                .sign(Algorithm.HMAC256(SIGNATURE));
+    }
+
     public static boolean verify(String token){
 
         try {

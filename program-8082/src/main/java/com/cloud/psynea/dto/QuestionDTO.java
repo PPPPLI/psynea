@@ -16,4 +16,5 @@ public class QuestionDTO {
     private String question;
     private Integer index;
     private List<String> answers;
+    private Integer type; // 1.text 2. choice 3. choice with potential complement
 }

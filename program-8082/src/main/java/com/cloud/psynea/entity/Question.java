@@ -21,4 +21,5 @@ public class Question {
     @Indexed(unique = true)
     private Integer index;
     private List<String> answers;
+    private Integer type;
 }

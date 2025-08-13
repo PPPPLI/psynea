@@ -43,5 +43,13 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public void updateUser(String userName) {
 
+        User res = userRepository.findUserByUsername(userName);
+
+        res.setNewUser(false);
+
+        userRepository.save(res);
+    }
 }
